@@ -1,0 +1,178 @@
+InTerminator = CR LF;
+OutTerminator = CR;
+
+getCurrent {
+    out ":r 2022";
+    in ":r 2022"; 
+    in ":%d";
+    in ":OK  ";
+    @mismatch { in ":ER %*c"; }
+}
+
+setCurrent {
+    out ":w 2020 %d";
+    in ":w 2020 %*d"; 
+    in ":OK  ";
+    @mismatch { in ":ER %*c"; }
+    @init { 
+        out ":r 2020";
+        in ":r 2020";
+        in ":%d";
+        in ":OK  ";
+    }
+}
+
+getCurrentSetpoint {
+    out ":r 2020";
+    in ":r 2020"; 
+    in ":%d";
+    in ":OK  ";
+    @mismatch { in ":ER %*c"; }
+}
+
+getVoltage {
+    out ":r a014";
+    in ":r a014"; 
+    in ":%d";
+    in ":OK  ";
+    @mismatch { in ":ER %*c"; }
+}
+
+# Returns firmware version in 0.001, e.g. 1700 = version 1.7
+getFirmwareVersion {
+    out ":r 0007";
+    in ":r 0007"; 
+    in ":%d";
+    in ":OK  ";
+    @mismatch { in ":ER %*c"; }
+}
+
+# Send any of these commands by writing to register 0x000d
+# See user manual
+#   1-clear errors
+#   2-standby off
+#   3-power on / laser off
+#   4-laser on
+#   5-TEC on
+#   6-TEC off
+#   7-save parameters
+#   9-bias on
+#   12-EStop by web interface
+#   13-power on 1
+#   14-start firmware update
+#   20-enable pilot laser
+#   21-disable pilot laser
+#   26-set configured
+#   27-reset configured
+#   28-reset new error info
+#   29-get error info
+#   31-reset CRC error counters
+#   39-reset mask error counters
+#   40-delete log files
+#   51-print exit state
+#   53-connect web terminal
+#   60-go to RW1
+#   81-print reboot info
+
+powerOff {
+    out ":w 000d 2"; 
+    in ":w 000d 2";
+    in ":OK  "; 
+    @mismatch { in ":ER %*c"; } 
+}
+
+powerOn {
+    out ":w 000d 3"; 
+    in ":w 000d 3";
+    in ":OK  "; 
+    @mismatch { in ":ER %*c"; } 
+}
+
+laserOn {
+    out ":w 000d 4"; 
+    in ":w 000d 4";
+    in ":OK  "; 
+    @mismatch { in ":ER %*c"; }
+}
+
+clearErrors {
+    out ":w 000d 1"; 
+    in ":w 000d 1";
+    in ":OK  "; 
+    @mismatch { in ":ER %*c"; }
+}
+
+emergencyStop {
+    out ":w 000d 12"; 
+    in ":w 000d 12";
+    in ":OK  "; 
+    @mismatch { in ":ER %*c"; }
+}
+
+# Get device state. Returns 32-bit hexadecimal, where bits correspond to 
+# state indicators, see associated record.
+getDeviceState {
+    out ":rh 000e";
+    in ":rh 000e";
+    in ":%x";
+    in ":OK  ";
+    @mismatch { in ":ER %*c"; }
+}
+
+# Get group 0 / Main Errors. Returns 32-bit hexadecimal, where bits correspond to 
+# error flags, see associated record.
+getMainErrors {
+    out ":rh 0001"; 
+    in ":rh 0001";
+    in ":%x";
+    in ":OK  ";
+    @mismatch { in ":ER %*c"; }
+}
+
+# Get group 0 / Main warnings. Returns 32-bit hexadecimal, where bits correspond to
+# warning flags, see associated record.
+getMainWarnings {
+    out ":rh 0003";
+    in ":rh 0003";
+    in ":%x";
+    in ":OK  ";
+    @mismatch { in ":ER %*c"; }
+}
+
+# Get group 6 / I/O Errors. Returns 32-bit hexadecimal, where bits correspond to 
+# error flags, see associated record.
+getIOErrors {
+    out ":rh 6001"; 
+    in ":rh 6001";
+    in ":%x";
+    in ":OK  ";
+    @mismatch { in ":ER %*c"; }
+}
+
+# Get group 6 / I/O Errors. Returns 32-bit hexadecimal, where bits correspond to 
+# warning flags, see associated record.
+getIOWarnings {
+    out ":rh 6003";
+    in ":rh 6003";
+    in ":%x";
+    in ":OK  ";
+    @mismatch { in ":ER %*c"; }
+}
+
+# Get group A / Current Errors. Returns 32-bit hexadecimal, where bits correspond to 
+# error flags, see associated record.
+getCurrentErrors {
+    out ":rh a001";
+    in ":rh a001";
+    in ":%x";
+    in ":OK  ";
+    @mismatch { in ":ER %*c"; }
+}
+
+# Connect a stringout record to this to get
+# a generic command interface.
+# After processing finishes, the record contains the reply.
+debug {
+    ExtraInput = Ignore;
+    out "%s"; in "%(DebugLine1)39c"; in "%(DebugLine2)39c"; in "%(DebugLine3)39c"; 
+}

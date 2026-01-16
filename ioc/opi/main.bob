@@ -1,0 +1,492 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<display version="2.0.0">
+  <name>AmtronCM100</name>
+  <width>450</width>
+  <height>505</height>
+  <widget type="group" version="3.0.0">
+    <name>Power</name>
+    <width>237</width>
+    <height>210</height>
+    <transparent>true</transparent>
+    <widget type="multi_state_led" version="2.0.0">
+      <name>SupplyPowerStatus</name>
+      <pv_name>$(P)$(R)PowerStatus</pv_name>
+      <x>31</x>
+      <y>139</y>
+      <width>140</width>
+      <height>38</height>
+      <square>true</square>
+      <states>
+        <state>
+          <value>0</value>
+          <label>Power Off</label>
+          <color>
+            <color name="Off" red="60" green="100" blue="60">
+            </color>
+          </color>
+        </state>
+        <state>
+          <value>1</value>
+          <label>Charging</label>
+          <color>
+            <color red="244" green="166" blue="0">
+            </color>
+          </color>
+        </state>
+        <state>
+          <value>2</value>
+          <label>Power On/Ready</label>
+          <color>
+            <color name="OK" red="0" green="255" blue="0">
+            </color>
+          </color>
+        </state>
+        <state>
+          <value>3</value>
+          <label>Laser On</label>
+          <color>
+            <color red="251" green="255" blue="0">
+            </color>
+          </color>
+        </state>
+      </states>
+    </widget>
+    <widget type="action_button" version="3.0.0">
+      <name>SupplyPowerOffButton</name>
+      <actions>
+        <action type="write_pv">
+          <description>Write PV</description>
+          <pv_name>$(P)$(R)PowerOff</pv_name>
+          <value>1</value>
+        </action>
+      </actions>
+      <text>Power Off</text>
+      <x>12</x>
+      <y>12</y>
+      <width>108</width>
+      <tooltip>$(actions)</tooltip>
+    </widget>
+    <widget type="action_button" version="3.0.0">
+      <name>SupplyPowerOnButton</name>
+      <actions>
+        <action type="write_pv">
+          <description>Write PV</description>
+          <pv_name>$(P)$(R)PowerOn</pv_name>
+          <value>1</value>
+        </action>
+      </actions>
+      <text>Power On / 
+Laser Off</text>
+      <x>12</x>
+      <y>47</y>
+      <width>108</width>
+      <height>48</height>
+      <tooltip>$(actions)</tooltip>
+    </widget>
+    <widget type="action_button" version="3.0.0">
+      <name>LaserOnButton</name>
+      <actions>
+        <action type="write_pv">
+          <description>Write PV</description>
+          <pv_name>$(P)$(R)LaserOn</pv_name>
+          <value>1</value>
+        </action>
+      </actions>
+      <text>Laser On</text>
+      <x>12</x>
+      <y>100</y>
+      <width>108</width>
+      <tooltip>$(actions)</tooltip>
+    </widget>
+    <widget type="action_button" version="3.0.0">
+      <name>StopButton</name>
+      <actions>
+        <action type="write_pv">
+          <description>Write PV</description>
+          <pv_name>$(P)$(R)EmergencyStop</pv_name>
+          <value>1</value>
+        </action>
+      </actions>
+      <text>STOP</text>
+      <x>142</x>
+      <y>12</y>
+      <width>50</width>
+      <height>53</height>
+      <foreground_color>
+        <color red="255" green="255" blue="255">
+        </color>
+      </foreground_color>
+      <background_color>
+        <color name="STOP" red="255" green="0" blue="0">
+        </color>
+      </background_color>
+      <tooltip>$(actions)</tooltip>
+    </widget>
+    <widget type="picture" version="2.0.0">
+      <name>LaserCautionPicture</name>
+      <file>images/laser-caution.svg</file>
+      <x>123</x>
+      <y>71</y>
+      <width>83</width>
+      <height>65</height>
+      <visible>false</visible>
+      <rules>
+        <rule name="Visible if laser is enabled" prop_id="visible" out_exp="false">
+          <exp bool_exp="pv0">
+            <value>true</value>
+          </exp>
+          <pv_name>$(P)$(R)DeviceState.B2</pv_name>
+        </rule>
+      </rules>
+    </widget>
+  </widget>
+  <widget type="group" version="3.0.0">
+    <name>Status</name>
+    <x>237</x>
+    <width>210</width>
+    <height>210</height>
+    <transparent>true</transparent>
+    <widget type="action_button" version="3.0.0">
+      <name>ClearErrorsButton</name>
+      <actions>
+        <action type="write_pv">
+          <description>Clear Errors</description>
+          <pv_name>$(P)$(R)ClearErrors</pv_name>
+          <value>1</value>
+        </action>
+      </actions>
+      <y>100</y>
+      <foreground_color>
+        <color name="Button_Text" red="0" green="0" blue="0">
+        </color>
+      </foreground_color>
+      <tooltip>$(actions)</tooltip>
+    </widget>
+    <widget type="led" version="2.0.0">
+      <name>ErrorPresentLED</name>
+      <pv_name>$(P)$(R)DeviceState.BB</pv_name>
+      <on_color>
+        <color name="MAJOR" red="255" green="0" blue="0">
+        </color>
+      </on_color>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>ErrorPresentLabel</name>
+      <text>Error Present</text>
+      <x>20</x>
+      <width>142</width>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>WarningPresentLabel</name>
+      <text>Warning Present</text>
+      <x>20</x>
+      <y>22</y>
+      <width>142</width>
+    </widget>
+    <widget type="led" version="2.0.0">
+      <name>WarningPresentLED</name>
+      <pv_name>$(P)$(R)DeviceState.BA</pv_name>
+      <y>22</y>
+      <on_color>
+        <color name="MINOR" red="255" green="128" blue="0">
+        </color>
+      </on_color>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>SafetyInterlockLabel</name>
+      <text>Disabled by safety IL</text>
+      <x>20</x>
+      <y>44</y>
+      <width>162</width>
+    </widget>
+    <widget type="led" version="2.0.0">
+      <name>SafetyInterlockLED</name>
+      <pv_name>$(P)$(R)DeviceState.B9</pv_name>
+      <y>44</y>
+      <on_color>
+        <color name="MAJOR" red="255" green="0" blue="0">
+        </color>
+      </on_color>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>FunctionalInterlockLabel</name>
+      <text>Disabled by functional IL</text>
+      <x>20</x>
+      <y>66</y>
+      <width>162</width>
+    </widget>
+    <widget type="led" version="2.0.0">
+      <name>FunctionalInterlockLED</name>
+      <pv_name>$(P)$(R)DeviceState.B18</pv_name>
+      <y>66</y>
+      <on_color>
+        <color name="MINOR" red="255" green="128" blue="0">
+        </color>
+      </on_color>
+    </widget>
+    <widget type="action_button" version="3.0.0">
+      <name>MoreStatusButton</name>
+      <actions>
+        <action type="open_display">
+          <description>Open Display</description>
+          <file>status.bob</file>
+          <target>tab</target>
+        </action>
+      </actions>
+      <text>More...</text>
+      <y>139</y>
+      <tooltip>$(actions)</tooltip>
+    </widget>
+  </widget>
+  <widget type="group" version="3.0.0">
+    <name>Current</name>
+    <y>210</y>
+    <width>450</width>
+    <height>275</height>
+    <transparent>true</transparent>
+    <widget type="label" version="2.0.0">
+      <name>CurrentIncrementLabel</name>
+      <text>Increment [Amp]</text>
+      <x>2</x>
+    </widget>
+    <widget type="textentry" version="3.0.0">
+      <name>CurrentIncrement</name>
+      <pv_name>loc://$(P)$(R)CurrentIncrement&lt;VDouble&gt;(0.1)</pv_name>
+      <x>2</x>
+      <y>20</y>
+      <width>118</width>
+      <height>40</height>
+      <precision>2</precision>
+    </widget>
+    <widget type="spinner" version="2.0.0">
+      <name>CurrentSetpointSpinner</name>
+      <pv_name>$(P)$(R)Current</pv_name>
+      <x>132</x>
+      <width>20</width>
+      <height>72</height>
+      <buttons_on_left>true</buttons_on_left>
+      <rules>
+        <rule name="Update increment" prop_id="increment" out_exp="true">
+          <exp bool_exp="True">
+            <expression>pv0</expression>
+          </exp>
+          <pv_name>loc://$(P)$(R)CurrentIncrement</pv_name>
+        </rule>
+      </rules>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>CurrentPresetsLabel</name>
+      <text>Presets [Amp]</text>
+      <x>2</x>
+      <y>74</y>
+    </widget>
+    <widget type="textentry" version="3.0.0">
+      <name>CurrentPreset0</name>
+      <pv_name>loc://$(P)$(R)CurrentPreset0&lt;VDouble&gt;(0.0)</pv_name>
+      <x>2</x>
+      <y>94</y>
+      <width>120</width>
+      <height>25</height>
+      <precision>1</precision>
+    </widget>
+    <widget type="action_button" version="3.0.0">
+      <name>CurrentPreset0Button</name>
+      <actions>
+        <action type="write_pv">
+          <description>Set Current to Preset 0</description>
+          <pv_name>loc://$(P)$(R)SetCurrentToPreset0</pv_name>
+          <value>1</value>
+        </action>
+      </actions>
+      <text>Set current</text>
+      <x>132</x>
+      <y>94</y>
+      <width>87</width>
+      <height>25</height>
+      <scripts>
+        <script file="script/apply_preset_current.py">
+          <pv_name>loc://$(P)$(R)SetCurrentToPreset0</pv_name>
+          <pv_name trigger="false">loc://$(P)$(R)CurrentPreset0</pv_name>
+          <pv_name trigger="false">$(P)$(R)Current</pv_name>
+        </script>
+      </scripts>
+      <tooltip>$(actions)</tooltip>
+    </widget>
+    <widget type="textentry" version="3.0.0">
+      <name>CurrentPreset1</name>
+      <pv_name>loc://$(P)$(R)CurrentPreset1&lt;VDouble&gt;(5.0)</pv_name>
+      <x>2</x>
+      <y>129</y>
+      <width>120</width>
+      <height>25</height>
+      <precision>1</precision>
+    </widget>
+    <widget type="action_button" version="3.0.0">
+      <name>CurrentPreset1Button</name>
+      <actions>
+        <action type="write_pv">
+          <description>Set Current to Preset 1</description>
+          <pv_name>loc://$(P)$(R)SetCurrentToPreset1</pv_name>
+          <value>1</value>
+        </action>
+      </actions>
+      <text>Set current</text>
+      <x>132</x>
+      <y>129</y>
+      <width>87</width>
+      <height>25</height>
+      <scripts>
+        <script file="script/apply_preset_current.py">
+          <pv_name>loc://$(P)$(R)SetCurrentToPreset1</pv_name>
+          <pv_name trigger="false">loc://$(P)$(R)CurrentPreset1</pv_name>
+          <pv_name trigger="false">$(P)$(R)Current</pv_name>
+        </script>
+      </scripts>
+      <tooltip>$(actions)</tooltip>
+    </widget>
+    <widget type="textentry" version="3.0.0">
+      <name>CurrentPreset2</name>
+      <pv_name>loc://$(P)$(R)CurrentPreset2&lt;VDouble&gt;(10.0)</pv_name>
+      <x>2</x>
+      <y>163</y>
+      <width>120</width>
+      <height>25</height>
+      <precision>1</precision>
+    </widget>
+    <widget type="action_button" version="3.0.0">
+      <name>CurrentPreset2Button</name>
+      <actions>
+        <action type="write_pv">
+          <description>Set Current to Preset 2</description>
+          <pv_name>loc://$(P)$(R)SetCurrentToPreset2</pv_name>
+          <value>1</value>
+        </action>
+      </actions>
+      <text>Set current</text>
+      <x>132</x>
+      <y>163</y>
+      <width>87</width>
+      <height>25</height>
+      <scripts>
+        <script file="script/apply_preset_current.py">
+          <pv_name>loc://$(P)$(R)SetCurrentToPreset2</pv_name>
+          <pv_name trigger="false">loc://$(P)$(R)CurrentPreset2</pv_name>
+          <pv_name trigger="false">$(P)$(R)Current</pv_name>
+        </script>
+      </scripts>
+      <tooltip>$(actions)</tooltip>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>CurrentLimitLabel</name>
+      <text>Limit</text>
+      <x>2</x>
+      <y>197</y>
+      <width>80</width>
+    </widget>
+    <widget type="textentry" version="3.0.0">
+      <name>CurrentLimit</name>
+      <pv_name>$(P)$(R)Current.DRVH</pv_name>
+      <x>2</x>
+      <y>217</y>
+      <width>120</width>
+      <precision>1</precision>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>CurrentSetpointLabel</name>
+      <text>Setpoint</text>
+      <x>238</x>
+      <width>174</width>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>CurrentSetpoint</name>
+      <pv_name>$(P)$(R)Current</pv_name>
+      <x>238</x>
+      <y>20</y>
+      <width>164</width>
+      <height>40</height>
+      <font>
+        <font family="Liberation Sans" style="REGULAR" size="22.0">
+        </font>
+      </font>
+      <precision>2</precision>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>CurrentSetpointReadbackLabel</name>
+      <text>Setpoint readback</text>
+      <x>238</x>
+      <y>60</y>
+      <width>174</width>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>CurrentSetpointRBV</name>
+      <pv_name>$(P)$(R)Current_SPRBV</pv_name>
+      <x>238</x>
+      <y>82</y>
+      <width>164</width>
+      <height>40</height>
+      <font>
+        <font family="Liberation Sans" style="REGULAR" size="22.0">
+        </font>
+      </font>
+      <precision>1</precision>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>CurrentReadbackLabel</name>
+      <text>Readback</text>
+      <x>238</x>
+      <y>129</y>
+      <width>166</width>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>CurrentRBV</name>
+      <pv_name>$(P)$(R)Current_RBV</pv_name>
+      <x>238</x>
+      <y>149</y>
+      <width>164</width>
+      <height>40</height>
+      <font>
+        <font family="Liberation Sans" style="BOLD" size="22.0">
+        </font>
+      </font>
+      <precision>1</precision>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>VoltageRBV</name>
+      <pv_name>$(P)$(R)Voltage_RBV</pv_name>
+      <x>238</x>
+      <y>197</y>
+      <width>164</width>
+      <height>40</height>
+      <font>
+        <font family="Liberation Sans" style="BOLD" size="22.0">
+        </font>
+      </font>
+      <precision>2</precision>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>FirmwareVersionLabel</name>
+    <text>Firmware version:</text>
+    <y>485</y>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12.0">
+      </font>
+    </font>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>FirmwareVersion</name>
+    <pv_name>$(P)$(R)FirmwareVersion</pv_name>
+    <x>100</x>
+    <y>485</y>
+    <width>80</width>
+    <height>15</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="12.0">
+      </font>
+    </font>
+  </widget>
+</display>

@@ -1,0 +1,663 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<display version="2.0.0">
+  <name>Status</name>
+  <width>1046</width>
+  <height>740</height>
+  <widget type="group" version="3.0.0">
+    <name>Device State</name>
+    <macros>
+      <PVNAME>$(P)$(R)DeviceState</PVNAME>
+    </macros>
+    <width>260</width>
+    <height>542</height>
+    <widget type="template" version="2.0.0">
+      <name>DeviceStateTemplateInstances</name>
+      <file>template/status_indicator.bob</file>
+      <instances>
+        <instance>
+          <macros>
+            <FIELD>B0</FIELD>
+            <LABEL>Power On 1</LABEL>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <FIELD>B1</FIELD>
+            <LABEL>Power On 2</LABEL>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <FIELD>B2</FIELD>
+            <LABEL>Laser Enabled</LABEL>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <FIELD>B3</FIELD>
+            <LABEL>Bias Enabled</LABEL>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <FIELD>B4</FIELD>
+            <LABEL>Terminal Access</LABEL>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <FIELD>B5</FIELD>
+            <LABEL>RW level bit 0</LABEL>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <FIELD>B6</FIELD>
+            <LABEL>RW level bit 1</LABEL>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <FIELD>B8</FIELD>
+            <LABEL>Pilot Enabled</LABEL>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <FIELD>B9</FIELD>
+            <LABEL>Interlock 1 ON</LABEL>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <FIELD>BA</FIELD>
+            <LABEL>Warning Present</LABEL>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <FIELD>BB</FIELD>
+            <LABEL>Error Present</LABEL>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <FIELD>BC</FIELD>
+            <LABEL>Gate Enabled</LABEL>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <FIELD>BD</FIELD>
+            <LABEL>Error info available</LABEL>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <FIELD>BE</FIELD>
+            <LABEL>Configured</LABEL>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <FIELD>B10</FIELD>
+            <LABEL>Interlock 2</LABEL>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <FIELD>B11</FIELD>
+            <LABEL>On 2 blocked (Testmode)</LABEL>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <FIELD>B12</FIELD>
+            <LABEL>Device is currently printing</LABEL>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <FIELD>B13</FIELD>
+            <LABEL>Pilot laser is on</LABEL>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <FIELD>B14</FIELD>
+            <LABEL>Pending save</LABEL>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <FIELD>B16</FIELD>
+            <LABEL>Testmode without PUs</LABEL>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <FIELD>B17</FIELD>
+            <LABEL>display control mode</LABEL>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <FIELD>B18</FIELD>
+            <LABEL>function interlock</LABEL>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <FIELD>B19</FIELD>
+            <LABEL>TEC on</LABEL>
+          </macros>
+        </instance>
+      </instances>
+      <width>222</width>
+      <height>506</height>
+      <gap>0</gap>
+    </widget>
+  </widget>
+  <widget type="group" version="3.0.0">
+    <name>Main Errors</name>
+    <macros>
+      <PVNAME>$(P)$(R)MainErrors</PVNAME>
+    </macros>
+    <x>260</x>
+    <width>260</width>
+    <height>524</height>
+    <widget type="template" version="2.0.0">
+      <name>MainErrorsTemplateInstances</name>
+      <file>template/error_indicator.bob</file>
+      <instances>
+        <instance>
+          <macros>
+            <FIELD>B0</FIELD>
+            <LABEL>internal error 1</LABEL>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <FIELD>B1</FIELD>
+            <LABEL>internal fan</LABEL>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <FIELD>B2</FIELD>
+            <LABEL>params bank 0 corrupted</LABEL>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <FIELD>B3</FIELD>
+            <LABEL>parameters corrupted</LABEL>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <FIELD>B5</FIELD>
+            <LABEL>wrong firmware version</LABEL>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <FIELD>B6</FIELD>
+            <LABEL>params bank 1 corrupted</LABEL>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <FIELD>BB</FIELD>
+            <LABEL>VM6 params nosync</LABEL>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <FIELD>BC</FIELD>
+            <LABEL>VM6 connection error 1</LABEL>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <FIELD>BD</FIELD>
+            <LABEL>VM6 connection error 2</LABEL>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <FIELD>B10</FIELD>
+            <LABEL>laser on timeout</LABEL>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <FIELD>B11</FIELD>
+            <LABEL>PUs: hardware config</LABEL>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <FIELD>B12</FIELD>
+            <LABEL>laser is still on!</LABEL>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <FIELD>B15</FIELD>
+            <LABEL>PUs: VM6 conn error 3</LABEL>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <FIELD>B16</FIELD>
+            <LABEL>PUs: temp error 1</LABEL>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <FIELD>B17</FIELD>
+            <LABEL>PUs: temp error 2</LABEL>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <FIELD>B18</FIELD>
+            <LABEL>link error</LABEL>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <FIELD>B19</FIELD>
+            <LABEL>PUs: overcurrent main</LABEL>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <FIELD>B1A</FIELD>
+            <LABEL>PUs: overcurrent bias</LABEL>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <FIELD>B1B</FIELD>
+            <LABEL>PUs: average current limit</LABEL>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <FIELD>B1C</FIELD>
+            <LABEL>PUs: internal error 1</LABEL>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <FIELD>B1D</FIELD>
+            <LABEL>PUs: internal error 2</LABEL>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <FIELD>B1E</FIELD>
+            <LABEL>Power fail</LABEL>
+          </macros>
+        </instance>
+      </instances>
+      <width>222</width>
+      <height>484</height>
+      <gap>0</gap>
+    </widget>
+  </widget>
+  <widget type="group" version="3.0.0">
+    <name>Main Warnings</name>
+    <macros>
+      <PVNAME>$(P)$(R)MainWarnings</PVNAME>
+    </macros>
+    <x>260</x>
+    <y>524</y>
+    <width>260</width>
+    <height>216</height>
+    <widget type="template" version="2.0.0">
+      <name>MainWarningsTemplateInstances</name>
+      <file>template/warning_indicator.bob</file>
+      <instances>
+        <instance>
+          <macros>
+            <FIELD>B0</FIELD>
+            <LABEL>Backup image loaded</LABEL>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <FIELD>B1</FIELD>
+            <LABEL>perf. level E disabled!</LABEL>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <FIELD>B2</FIELD>
+            <LABEL>VM6 not initialized</LABEL>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <FIELD>B3</FIELD>
+            <LABEL>board image backup</LABEL>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <FIELD>B4</FIELD>
+            <LABEL>board image corrupted</LABEL>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <FIELD>B5</FIELD>
+            <LABEL>parameters back 2 loaded</LABEL>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <FIELD>B10</FIELD>
+            <LABEL>PU update running</LABEL>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <FIELD>B11</FIELD>
+            <LABEL>Parameter upload running</LABEL>
+          </macros>
+        </instance>
+      </instances>
+      <width>222</width>
+      <height>176</height>
+      <gap>0</gap>
+    </widget>
+  </widget>
+  <widget type="group" version="3.0.0">
+    <name>I/O Errors</name>
+    <macros>
+      <PVNAME>$(P)$(R)IOErrors</PVNAME>
+    </macros>
+    <x>530</x>
+    <width>258</width>
+    <height>414</height>
+    <widget type="template" version="2.0.0">
+      <name>IOErrorsTemplateInstances</name>
+      <file>template/error_indicator.bob</file>
+      <instances>
+        <instance>
+          <macros>
+            <FIELD>B2</FIELD>
+            <LABEL>remote access timeout</LABEL>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <FIELD>B3</FIELD>
+            <LABEL>web browser timeout</LABEL>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <FIELD>B4</FIELD>
+            <LABEL>laser warning light</LABEL>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <FIELD>B5</FIELD>
+            <LABEL>emergency stop web</LABEL>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <FIELD>B6</FIELD>
+            <LABEL>interlock external</LABEL>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <FIELD>B9</FIELD>
+            <LABEL>laser temp too high</LABEL>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <FIELD>BA</FIELD>
+            <LABEL>hotside temp too high</LABEL>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <FIELD>BB</FIELD>
+            <LABEL>auxilary temp too high</LABEL>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <FIELD>BC</FIELD>
+            <LABEL>laser temp too low</LABEL>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <FIELD>BD</FIELD>
+            <LABEL>hotside temp too low</LABEL>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <FIELD>BE</FIELD>
+            <LABEL>auxilary temp too low</LABEL>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <FIELD>B10</FIELD>
+            <LABEL>internal temp too high</LABEL>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <FIELD>B11</FIELD>
+            <LABEL>interlock sync DC6</LABEL>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <FIELD>B12</FIELD>
+            <LABEL>PUs: interlock sync VM6</LABEL>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <FIELD>B1A</FIELD>
+            <LABEL>function interlock</LABEL>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <FIELD>B1B</FIELD>
+            <LABEL>temp sensor error</LABEL>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <FIELD>B1C</FIELD>
+            <LABEL>port 8010 rec. overflow</LABEL>
+          </macros>
+        </instance>
+      </instances>
+      <width>222</width>
+      <height>374</height>
+      <gap>0</gap>
+    </widget>
+  </widget>
+  <widget type="group" version="3.0.0">
+    <name>I/O Warnings</name>
+    <macros>
+      <PVNAME>$(P)$(R)IOWarnings</PVNAME>
+    </macros>
+    <x>530</x>
+    <y>414</y>
+    <width>258</width>
+    <height>142</height>
+    <transparent>true</transparent>
+    <widget type="template" version="2.0.0">
+      <name>IOWarningsTemplateInstances</name>
+      <file>template/warning_indicator.bob</file>
+      <instances>
+        <instance>
+          <macros>
+            <FIELD>B4</FIELD>
+            <LABEL>Laser warning light</LABEL>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <FIELD>B6</FIELD>
+            <LABEL>interlock external</LABEL>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <FIELD>B9</FIELD>
+            <LABEL>power off by busy</LABEL>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <FIELD>BA</FIELD>
+            <LABEL>function interlock</LABEL>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <FIELD>BB</FIELD>
+            <LABEL>laser temp too high</LABEL>
+          </macros>
+        </instance>
+      </instances>
+      <width>222</width>
+      <height>110</height>
+      <gap>0</gap>
+    </widget>
+  </widget>
+  <widget type="group" version="3.0.0">
+    <name>Current Errors</name>
+    <macros>
+      <PVNAME>$(P)$(R)CurrentErrors</PVNAME>
+    </macros>
+    <x>788</x>
+    <width>258</width>
+    <height>414</height>
+    <transparent>true</transparent>
+    <widget type="template" version="2.0.0">
+      <name>CurrentErrorsTemplateInstances</name>
+      <file>template/error_indicator.bob</file>
+      <instances>
+        <instance>
+          <macros>
+            <FIELD>B0</FIELD>
+            <LABEL>PUs: short circuit</LABEL>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <FIELD>B1</FIELD>
+            <LABEL>PUs: open circuit</LABEL>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <FIELD>B2</FIELD>
+            <LABEL>PUs: prim volt min error</LABEL>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <FIELD>B3</FIELD>
+            <LABEL>PUs: prim volt max error</LABEL>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <FIELD>B4</FIELD>
+            <LABEL>PUs: error 1</LABEL>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <FIELD>B5</FIELD>
+            <LABEL>PUs: power up timeout</LABEL>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <FIELD>B6</FIELD>
+            <LABEL>PUs: error 2</LABEL>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <FIELD>B8</FIELD>
+            <LABEL>PUs: error 3</LABEL>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <FIELD>B9</FIELD>
+            <LABEL>DC input current max</LABEL>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <FIELD>BE</FIELD>
+            <LABEL>PUs: peak current max</LABEL>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <FIELD>BF</FIELD>
+            <LABEL>PUs: peak energy max</LABEL>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <FIELD>B10</FIELD>
+            <LABEL>PUs: hardware config</LABEL>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <FIELD>B11</FIELD>
+            <LABEL>PUs: current calibration</LABEL>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <FIELD>B12</FIELD>
+            <LABEL>PUs: FPGA CRC</LABEL>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <FIELD>B15</FIELD>
+            <LABEL>expected VM6 missing</LABEL>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <FIELD>B1F</FIELD>
+            <LABEL>current setting invalid</LABEL>
+          </macros>
+        </instance>
+      </instances>
+      <width>222</width>
+      <height>352</height>
+      <gap>0</gap>
+    </widget>
+  </widget>
+</display>

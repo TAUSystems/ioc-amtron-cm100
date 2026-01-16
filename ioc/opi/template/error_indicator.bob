@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<display version="2.0.0">
+  <name>error_indicator</name>
+  <width>222</width>
+  <height>22</height>
+  <widget type="led" version="2.0.0">
+    <name>LED</name>
+    <class>ERROR</class>
+    <pv_name>$(PVNAME).$(FIELD=VAL)</pv_name>
+    <off_color use_class="true">
+      <color name="Off" red="60" green="100" blue="60">
+      </color>
+    </off_color>
+    <on_color use_class="true">
+      <color name="MAJOR" red="255" green="0" blue="0">
+      </color>
+    </on_color>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label</name>
+    <text>$(LABEL)</text>
+    <x>25</x>
+    <y>2</y>
+    <width>197</width>
+  </widget>
+</display>
