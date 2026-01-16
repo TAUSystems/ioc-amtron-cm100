@@ -1,0 +1,276 @@
+# Current setpoint
+# Record is in Amp units, but device expects 0.1A, so use adjustment slope
+# (StreamDevice skips ESLO)
+record(ao, "$(P)$(R)Current") {
+    field(DESC, "Total current setpoint")
+    field(DTYP, "stream")
+    field(OUT, "@AmtronCM100.proto setCurrent $(PORT)")
+    field(PREC, "3")
+    field(EGU,  "Amp")
+    field(DRVL, "0.0")
+    field(DRVH, "10.0")
+    field(VAL,  "0.000")
+    field(ASLO, "0.1")
+}
+
+record(ai, "$(P)$(R)Current_SPRBV") {
+    field(DESC, "Total current setpoint readback")
+    field(DTYP, "stream")
+    field(INP,  "@AmtronCM100.proto getCurrentSetpoint $(PORT)")
+    field(PREC, "1")
+    field(EGU,  "Amp")
+    field(ASLO, "0.1")
+    field(SCAN, "1 second")
+}
+
+# Response from device is in 0.1A units, so use adjustment slope to convert to Amps
+record(ai, "$(P)$(R)Current_RBV") {
+    field(DESC, "Total current readback")
+    field(DTYP, "stream")
+    field(INP,  "@AmtronCM100.proto getCurrent $(PORT)")
+    field(PREC, "1")
+    field(EGU,  "Amp")
+    field(ASLO, "0.1")
+    field(SCAN, "1 second")
+}
+
+# Response from device is in 0.01V units, so use adjustment slope to convert to Amps
+record(ai, "$(P)$(R)Voltage_RBV") {
+    field(DESC, "Total voltage readback")
+    field(DTYP, "stream")
+    field(INP,  "@AmtronCM100.proto getVoltage $(PORT)")
+    field(PREC, "2")
+    field(EGU,  "Volt")
+    field(ASLO, "0.01")
+    field(SCAN, "1 second")
+}
+
+# Response from device is in 0.001 versions, e.g. 1234 = version 1.234
+record(ai, "$(P)$(R)FirmwareVersion") {
+    field(DESC, "Firmware version")
+    field(DTYP, "stream")
+    field(PREC, "3")
+    field(INP,  "@AmtronCM100.proto getFirmwareVersion $(PORT)")
+    field(PINI, "YES")
+    field(ASLO, "0.001")
+}
+
+# Commands
+record(bo, "$(P)$(R)ClearErrors") {
+    field(DESC, "Clear error flags")
+    field(DTYP, "stream")
+    field(OUT,  "@AmtronCM100.proto clearErrors $(PORT)")
+    field(HIGH, 1)
+}
+
+record(bo, "$(P)$(R)PowerOff") {
+    field(DESC, "Power off")
+    field(DTYP, "stream")
+    field(OUT,  "@AmtronCM100.proto powerOff $(PORT)")
+    field(HIGH, 1)
+}
+
+record(bo, "$(P)$(R)PowerOn") {
+    field(DESC, "Power on, laser off")
+    field(DTYP, "stream")
+    field(OUT,  "@AmtronCM100.proto powerOn $(PORT)")
+    field(HIGH, 1)
+}
+
+record(bo, "$(P)$(R)LaserOn") {
+    field(DESC, "Power on, laser on")
+    field(DTYP, "stream")
+    field(OUT,  "@AmtronCM100.proto laserOn $(PORT)")
+    field(HIGH, 1)
+}
+
+record(bo, "$(P)$(R)EmergencyStop") {
+    field(DESC, "Immediate power off")
+    field(DTYP, "stream")
+    field(OUT,  "@AmtronCM100.proto emergencyStop $(PORT)")
+    field(HIGH, 1)
+}
+
+
+# Device State
+# | Bit | Record Field | Description                         |
+# |-----|--------------|-------------------------------------|
+# | 0   | B0           | POWER ON 1                          |
+# | 1   | B1           | POWER ON 2                          |
+# | 2   | B2           | LASER ENABLED                       |
+# | 3   | B3           | BIAS ENABLED                        |
+# | 4   | B4           | TERMINAL ACCESS                     |
+# | 5   | B5           | RW level bit 0                      |
+# | 6   | B6           | RW level bit 1                      |
+# | 8   | B8           | PILOT ENABLED                       |
+# | 9   | B9           | INTERLOCK 1 ON                      |
+# | 10  | BA           | WARNING PRESENT                     |
+# | 11  | BB           | ERROR PRESENT                       |
+# | 12  | BC           | GATE ENABLED                        |
+# | 13  | BD           | Error info available                |
+# | 14  | BE           | CONFIGURED                          |
+# | 16  | B10          | INTERLOCK 2                         |
+# | 17  | B11          | On 2 blocked (Testmode)             |
+# | 18  | B12          | Device is currently printing        |
+# | 19  | B13          | Pilot laser is on                   |
+# | 20  | B14          | Pending save                        |
+# | 22  | B16          | Testmode without PUs                |
+# | 23  | B17          | display control mode                |
+# | 24  | B18          | function interlock                  |
+# | 25  | B19          | TEC on                              |
+record(mbbiDirect, "$(P)$(R)DeviceState") {
+    field(DESC, "Device state")
+    field(DTYP, "stream")
+    field(INP,  "@AmtronCM100.proto getDeviceState $(PORT)")
+    field(SCAN, "2 second")
+}
+
+# Group 0 / Main Errors
+# | Bit | Record Field | Description                        |
+# |-----|--------------|------------------------------------|
+# | 0   | B0           | internal error 1                   |
+# | 1   | B1           | internal fan                       |
+# | 2   | B2           | params bank 0 corrupted            |
+# | 3   | B3           | parameters corrupted               |
+# | 5   | B5           | wrong firmware version             |
+# | 6   | B6           | params bank 1 corrupted            |
+# | 11  | BB           | VM6 params nosync                  |
+# | 12  | BC           | VM6 connection error 1             |
+# | 13  | BD           | VM6 connection error 2             |
+# | 16  | B10          | laser on timeout                   |
+# | 17  | B11          | PUs: hardware config               |
+# | 18  | B12          | laser is still on!                 |
+# | 21  | B15          | PUs: VM6 conn error 3              |
+# | 22  | B16          | PUs: temp error 1                  |
+# | 23  | B17          | PUs: temp error 2                  |
+# | 24  | B18          | link error                         |
+# | 25  | B19          | PUs: overcurrent main              |
+# | 26  | B1A          | PUs: overcurrent bias              |
+# | 27  | B1B          | PUs: average current limit         |
+# | 28  | B1C          | PUs: internal error 1              |
+# | 29  | B1D          | PUs: internal error 2              |
+# | 30  | B1E          | Power fail                         |
+record(mbbiDirect, "$(P)$(R)MainErrors") {
+    field(DESC, "ERR0 - Errors group 0")
+    field(DTYP, "stream")
+    field(INP,  "@AmtronCM100.proto getMainErrors $(PORT)")
+    field(SCAN, "2 second")
+}
+
+# Group 0 / Main Warnings
+# | Bit | Record Field | Description                      |
+# |-----|--------------|----------------------------------|
+# | 0   | B0           | Backup image loaded              |
+# | 1   | B1           | perf. level E disabled!          |
+# | 2   | B2           | VM6 not initialized              |
+# | 3   | B3           | board image backup               |
+# | 4   | B4           | board image corrupted            |
+# | 5   | B5           | parameters back 2 loaded         |
+# | 16  | B10          | PU update running                |
+# | 17  | B11          | Parameter upload running         |
+record(mbbiDirect, "$(P)$(R)MainWarnings") {
+    field(DESC, "WRN0 - Warnings group 0")
+    field(DTYP, "stream")
+    field(INP,  "@AmtronCM100.proto getMainWarnings $(PORT)")
+    field(SCAN, "2 second")
+}
+
+# Group 6 / I/O Errors
+# | Bit | Record Field | Description                   |
+# |-----|--------------|-------------------------------|
+# | 2   | B2           | remote access timeout         |
+# | 3   | B3           | web browser timeout           |
+# | 4   | B4           | laser warning light           |
+# | 5   | B5           | emergency stop web            |
+# | 6   | B6           | interlock external            |
+# | 9   | B9           | laser temp too high           |
+# | 10  | BA           | hotside temp too high         |
+# | 11  | BB           | auxilary temp too high        |
+# | 12  | BC           | laser temp too low            |
+# | 13  | BD           | hotside temp too low          |
+# | 14  | BE           | auxilary temp too low         |
+# | 16  | B10          | internal temp too high        |
+# | 17  | B11          | interlock sync DC6            |
+# | 18  | B12          | PUs: interlock sync VM6       |
+# | 26  | B1A          | function interlock            |
+# | 27  | B1B          | temp sensor error             |
+# | 28  | B1C          | port 8010 rec. overflow       |
+record(mbbiDirect, "$(P)$(R)IOErrors") {
+    field(DESC, "ERR6 - Errors group 6")
+    field(DTYP, "stream")
+    field(INP,  "@AmtronCM100.proto getIOErrors $(PORT)")
+    field(SCAN, "2 second")
+}
+
+# Group 6 / I/O Warnings
+# | Bit | Record Field | Description                |
+# |-----|--------------|----------------------------|
+# | 4   | B4           | Laser warning light        |
+# | 6   | B6           | interlock external         |
+# | 9   | B9           | power off by bus           |
+# | 10  | BA           | function interlock         |
+# | 11  | BB           | laser temp too high        |
+record(mbbiDirect, "$(P)$(R)IOWarnings") {
+    field(DESC, "WRN6 - Warnings group 6")
+    field(DTYP, "stream")
+    field(INP,  "@AmtronCM100.proto getIOWarnings $(PORT)")
+    field(SCAN, "2 second")
+}
+
+# Group A / Current Warnings
+# | Bit | Record Field | Description                     |
+# |-----|--------------|---------------------------------|
+# | 0   | B0           | PUs: short circuit              |
+# | 1   | B1           | PUs: open circuit               |
+# | 2   | B2           | PUs: prim volt min error        |
+# | 3   | B3           | PUs: prim volt max error        |
+# | 4   | B4           | PUs: error 1                    |
+# | 5   | B5           | PUs: power up timeout           |
+# | 6   | B6           | PUs: error 2                    |
+# | 8   | B8           | PUs: error 3                    |
+# | 9   | B9           | DC input current max            |
+# | 14  | BE           | PUs: peak current max           |
+# | 15  | BF           | PUs: peak energy max            |
+# | 16  | B10          | PUs: hardware config            |
+# | 17  | B11          | PUs: current calibration        |
+# | 18  | B12          | PUs: FPGA CRC                   |
+# | 21  | B15          | expected VM6 missing            |
+# | 31  | B1F          | current setting invalid         |
+record(mbbiDirect, "$(P)$(R)CurrentErrors") {
+    field(DESC, "ERRA - Current errors group A")
+    field(DTYP, "stream")
+    field(INP,  "@AmtronCM100.proto getCurrentErrors $(PORT)")
+    field(SCAN, "2 second")
+}
+
+# Read power status from first three bits of DeviceState
+# Bit 0- Power On 1
+# Bit 1- Power On 2
+# Bit 2- Laser Enabled
+# 000 = Standby
+# 001 = Charging
+# 011 = Ready
+# 111 = Laser Enabled
+record(mbbi, "$(P)$(R)PowerStatus") {
+    field(DESC, "Supply and Laser power status")
+    field(DTYP, "Raw Soft Channel")
+    field(INP, "$(P)$(R)DeviceState CP")
+    field(NOBT, "3")
+    field(ZRVL, "0x0")   field(ZRST, "Power Off")
+    field(ONVL, "0x1")   field(ONST, "Charging")
+    field(TWVL, "0x3")   field(TWST, "Power On/Ready")
+    field(THVL, "0x7")   field(THST, "Laser On")
+    field(UNSV, "MAJOR")
+}
+
+# Generic command interface.
+# After processing finishes, the record contains the reply.
+record(stringout, "$(P)$(R)Debug") {
+    field(DESC, "Generic command interface")
+    field(DTYP, "stream")
+    field(OUT,  "@AmtronCM100.proto debug $(PORT)")
+}
+
+record(stringin, "DebugLine1") {}
+record(stringin, "DebugLine2") {}
+record(stringin, "DebugLine3") {}
