@@ -15,6 +15,7 @@
       <color name="MAJOR" red="255" green="0" blue="0">
       </color>
     </on_color>
+    <tooltip></tooltip>
   </widget>
   <widget type="label" version="2.0.0">
     <name>Label</name>

@@ -16,6 +16,7 @@
       <width>140</width>
       <height>38</height>
       <square>true</square>
+      <tooltip>Power status</tooltip>
       <states>
         <state>
           <value>0</value>
@@ -64,7 +65,7 @@
       <x>12</x>
       <y>12</y>
       <width>108</width>
-      <tooltip>$(actions)</tooltip>
+      <tooltip>Go to Standby</tooltip>
     </widget>
     <widget type="action_button" version="3.0.0">
       <name>SupplyPowerOnButton</name>
@@ -81,7 +82,7 @@ Laser Off</text>
       <y>47</y>
       <width>108</width>
       <height>48</height>
-      <tooltip>$(actions)</tooltip>
+      <tooltip>Go to Power On/Ready</tooltip>
     </widget>
     <widget type="action_button" version="3.0.0">
       <name>LaserOnButton</name>
@@ -96,7 +97,7 @@ Laser Off</text>
       <x>12</x>
       <y>100</y>
       <width>108</width>
-      <tooltip>$(actions)</tooltip>
+      <tooltip>Go to Laser On</tooltip>
     </widget>
     <widget type="action_button" version="3.0.0">
       <name>StopButton</name>
@@ -120,7 +121,7 @@ Laser Off</text>
         <color name="STOP" red="255" green="0" blue="0">
         </color>
       </background_color>
-      <tooltip>$(actions)</tooltip>
+      <tooltip>Emergency Stop</tooltip>
     </widget>
     <widget type="picture" version="2.0.0">
       <name>LaserCautionPicture</name>
@@ -169,6 +170,7 @@ Laser Off</text>
         <color name="MAJOR" red="255" green="0" blue="0">
         </color>
       </on_color>
+      <tooltip></tooltip>
     </widget>
     <widget type="label" version="2.0.0">
       <name>ErrorPresentLabel</name>
@@ -191,6 +193,7 @@ Laser Off</text>
         <color name="MINOR" red="255" green="128" blue="0">
         </color>
       </on_color>
+      <tooltip></tooltip>
     </widget>
     <widget type="label" version="2.0.0">
       <name>SafetyInterlockLabel</name>
@@ -207,6 +210,7 @@ Laser Off</text>
         <color name="MAJOR" red="255" green="0" blue="0">
         </color>
       </on_color>
+      <tooltip></tooltip>
     </widget>
     <widget type="label" version="2.0.0">
       <name>FunctionalInterlockLabel</name>
@@ -223,6 +227,7 @@ Laser Off</text>
         <color name="MINOR" red="255" green="128" blue="0">
         </color>
       </on_color>
+      <tooltip></tooltip>
     </widget>
     <widget type="action_button" version="3.0.0">
       <name>MoreStatusButton</name>
@@ -235,7 +240,7 @@ Laser Off</text>
       </actions>
       <text>More...</text>
       <y>139</y>
-      <tooltip>$(actions)</tooltip>
+      <tooltip>All status, error, warning information</tooltip>
     </widget>
   </widget>
   <widget type="group" version="3.0.0">
@@ -248,6 +253,7 @@ Laser Off</text>
       <name>CurrentIncrementLabel</name>
       <text>Increment [Amp]</text>
       <x>2</x>
+      <width>118</width>
     </widget>
     <widget type="textentry" version="3.0.0">
       <name>CurrentIncrement</name>
@@ -257,6 +263,7 @@ Laser Off</text>
       <width>118</width>
       <height>40</height>
       <precision>2</precision>
+      <tooltip>Used by up/down controls</tooltip>
     </widget>
     <widget type="spinner" version="2.0.0">
       <name>CurrentSetpointSpinner</name>
@@ -273,6 +280,7 @@ Laser Off</text>
           <pv_name>loc://$(P)$(R)CurrentIncrement</pv_name>
         </rule>
       </rules>
+      <tooltip>Change current setpoint by increment. After clicking once to put this control in focus, you can use up/down arrow keys.</tooltip>
     </widget>
     <widget type="label" version="2.0.0">
       <name>CurrentPresetsLabel</name>
@@ -288,6 +296,7 @@ Laser Off</text>
       <width>120</width>
       <height>25</height>
       <precision>1</precision>
+      <tooltip></tooltip>
     </widget>
     <widget type="action_button" version="3.0.0">
       <name>CurrentPreset0Button</name>
@@ -310,7 +319,7 @@ Laser Off</text>
           <pv_name trigger="false">$(P)$(R)Current</pv_name>
         </script>
       </scripts>
-      <tooltip>$(actions)</tooltip>
+      <tooltip>Set current setpoint to this preset</tooltip>
     </widget>
     <widget type="textentry" version="3.0.0">
       <name>CurrentPreset1</name>
@@ -320,6 +329,7 @@ Laser Off</text>
       <width>120</width>
       <height>25</height>
       <precision>1</precision>
+      <tooltip></tooltip>
     </widget>
     <widget type="action_button" version="3.0.0">
       <name>CurrentPreset1Button</name>
@@ -342,7 +352,7 @@ Laser Off</text>
           <pv_name trigger="false">$(P)$(R)Current</pv_name>
         </script>
       </scripts>
-      <tooltip>$(actions)</tooltip>
+      <tooltip>Set current setpoint to this preset</tooltip>
     </widget>
     <widget type="textentry" version="3.0.0">
       <name>CurrentPreset2</name>
@@ -352,6 +362,7 @@ Laser Off</text>
       <width>120</width>
       <height>25</height>
       <precision>1</precision>
+      <tooltip></tooltip>
     </widget>
     <widget type="action_button" version="3.0.0">
       <name>CurrentPreset2Button</name>
@@ -374,7 +385,7 @@ Laser Off</text>
           <pv_name trigger="false">$(P)$(R)Current</pv_name>
         </script>
       </scripts>
-      <tooltip>$(actions)</tooltip>
+      <tooltip>Set current setpoint to this preset</tooltip>
     </widget>
     <widget type="label" version="2.0.0">
       <name>CurrentLimitLabel</name>
@@ -390,6 +401,7 @@ Laser Off</text>
       <y>217</y>
       <width>120</width>
       <precision>1</precision>
+      <tooltip>Software current limit</tooltip>
     </widget>
     <widget type="label" version="2.0.0">
       <name>CurrentSetpointLabel</name>
@@ -410,6 +422,7 @@ Laser Off</text>
       </font>
       <precision>2</precision>
       <vertical_alignment>1</vertical_alignment>
+      <tooltip>As requested by user</tooltip>
     </widget>
     <widget type="label" version="2.0.0">
       <name>CurrentSetpointReadbackLabel</name>
@@ -431,6 +444,7 @@ Laser Off</text>
       </font>
       <precision>1</precision>
       <vertical_alignment>1</vertical_alignment>
+      <tooltip>As set on device</tooltip>
     </widget>
     <widget type="label" version="2.0.0">
       <name>CurrentReadbackLabel</name>
@@ -452,6 +466,7 @@ Laser Off</text>
       </font>
       <precision>1</precision>
       <vertical_alignment>1</vertical_alignment>
+      <tooltip>As measured by device</tooltip>
     </widget>
     <widget type="textupdate" version="2.0.0">
       <name>VoltageRBV</name>
@@ -466,6 +481,7 @@ Laser Off</text>
       </font>
       <precision>2</precision>
       <vertical_alignment>1</vertical_alignment>
+      <tooltip>As measured by device</tooltip>
     </widget>
   </widget>
   <widget type="label" version="2.0.0">
@@ -488,5 +504,6 @@ Laser Off</text>
       <font family="Liberation Sans" style="REGULAR" size="12.0">
       </font>
     </font>
+    <tooltip></tooltip>
   </widget>
 </display>
