@@ -318,6 +318,10 @@ Laser Off</text>
           <pv_name trigger="false">loc://$(P)$(R)CurrentPreset0</pv_name>
           <pv_name trigger="false">$(P)$(R)Current</pv_name>
         </script>
+        <script file="script/disable_preset_current.py">
+          <pv_name>$(P)$(R)Current.DRVH</pv_name>
+          <pv_name>loc://$(P)$(R)CurrentPreset0</pv_name>
+        </script>        
       </scripts>
       <tooltip>Set current setpoint to this preset</tooltip>
     </widget>
@@ -351,6 +355,10 @@ Laser Off</text>
           <pv_name trigger="false">loc://$(P)$(R)CurrentPreset1</pv_name>
           <pv_name trigger="false">$(P)$(R)Current</pv_name>
         </script>
+        <script file="script/disable_preset_current.py">
+          <pv_name>$(P)$(R)Current.DRVH</pv_name>
+          <pv_name>loc://$(P)$(R)CurrentPreset1</pv_name>
+        </script>
       </scripts>
       <tooltip>Set current setpoint to this preset</tooltip>
     </widget>
@@ -383,6 +391,10 @@ Laser Off</text>
           <pv_name>loc://$(P)$(R)SetCurrentToPreset2</pv_name>
           <pv_name trigger="false">loc://$(P)$(R)CurrentPreset2</pv_name>
           <pv_name trigger="false">$(P)$(R)Current</pv_name>
+        </script>
+        <script file="script/disable_preset_current.py">
+          <pv_name>$(P)$(R)Current.DRVH</pv_name>
+          <pv_name>loc://$(P)$(R)CurrentPreset2</pv_name>
         </script>
       </scripts>
       <tooltip>Set current setpoint to this preset</tooltip>
