@@ -8,6 +8,10 @@ ARG DEVELOPER=${REGISTRY}/epics-base${IMAGE_EXT}-developer:${BASE}
 ##### build stage ##############################################################
 FROM  ${DEVELOPER} AS developer
 
+LABEL org.opencontainers.image.authors="Reinier van Mourik <reinier.vanmourik@tausystems.com>"
+LABEL org.opencontainers.image.source=https://github.com/TAUSystems/ioc-amtron-cm100
+LABEL org.opencontainers.image.description="Generic IOC for Amtron CM100 series power supplies for laser diodes."
+
 # The devcontainer mounts the project root to /epics/generic-source
 # Using the same location here makes devcontainer/runtime differences transparent.
 ENV SOURCE_FOLDER=/epics/generic-source
@@ -55,6 +59,10 @@ RUN ibek ioc extract-runtime-assets /assets /python
 
 ##### runtime stage ############################################################
 FROM ${RUNTIME} AS runtime
+
+LABEL org.opencontainers.image.authors="Reinier van Mourik <reinier.vanmourik@tausystems.com>"
+LABEL org.opencontainers.image.source=https://github.com/TAUSystems/ioc-amtron-cm100
+LABEL org.opencontainers.image.description="Generic IOC for Amtron CM100 series power supplies for laser diodes."
 
 # get runtime assets from the preparation stage
 COPY --from=runtime_prep /assets /
