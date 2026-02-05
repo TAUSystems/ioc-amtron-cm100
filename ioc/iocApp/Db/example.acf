@@ -1,0 +1,41 @@
+# Example Access Control File for Amtron CM100 IOC
+
+UAG(laserteam) {user1, user2}
+UAG(developer) {user3}
+HAG(lab) {host1, host2}
+HAG(server) {host3, host4}
+
+# There are three Access Security Groups defined in AmtronCM100.db (aside from 
+# DEFAULT). Most output records have ASG "operator", and all input records have 
+# no ASG defined, i.e. DEFAULT. The Debug record has ASG "developer". 
+# An ASG called "poweroff" is applied to records that shut off the laser, so that 
+# some non-operator users can at least do that (e.g. emergency).
+
+# Everyone may Read all fields (level 1 = all fields, level 0 = basic fields such 
+# as VAL, CMD, and RST) of all records not assigned an ASG.
+ASG(DEFAULT) {
+    RULE(1,READ)
+}
+
+# Certain user groups on lab computers are allowed to Write records with ASG 
+# "operator". 
+# Everyone may Read all fields of all records in ASG "operator".
+ASG(operator) {
+    RULE(1,READ)
+    RULE(1,WRITE) {
+        UAG(laserteam,developer)
+        HAG(lab)
+    }
+}
+
+# Allow anyone to turn off the laser. (level 0 = only VAL, CMD, RST fields)
+ASG(poweroff) {
+    RULE(0, WRITE)
+}
+
+# Developer users may Read and Write records with ASG "developer"
+ASG(developer) {
+    RULE(1,WRITE) {
+        UAG(developer)
+    }
+}
