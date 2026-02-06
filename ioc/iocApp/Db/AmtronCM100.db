@@ -11,6 +11,7 @@ record(ao, "$(P)$(R)Current") {
     field(DRVH, "10.0")
     field(VAL,  "0.000")
     field(ASLO, "0.1")
+    field(ASG, "operator")
 }
 
 record(ai, "$(P)$(R)Current_SPRBV") {
@@ -61,6 +62,7 @@ record(bo, "$(P)$(R)ClearErrors") {
     field(DTYP, "stream")
     field(OUT,  "@AmtronCM100.proto clearErrors $(PORT)")
     field(HIGH, 1)
+    field(ASG, "operator")
 }
 
 record(bo, "$(P)$(R)PowerOff") {
@@ -68,6 +70,7 @@ record(bo, "$(P)$(R)PowerOff") {
     field(DTYP, "stream")
     field(OUT,  "@AmtronCM100.proto powerOff $(PORT)")
     field(HIGH, 1)
+    field(ASG, "poweroff")
 }
 
 record(bo, "$(P)$(R)PowerOn") {
@@ -75,6 +78,7 @@ record(bo, "$(P)$(R)PowerOn") {
     field(DTYP, "stream")
     field(OUT,  "@AmtronCM100.proto powerOn $(PORT)")
     field(HIGH, 1)
+    field(ASG, "operator")
 }
 
 record(bo, "$(P)$(R)LaserOn") {
@@ -82,6 +86,7 @@ record(bo, "$(P)$(R)LaserOn") {
     field(DTYP, "stream")
     field(OUT,  "@AmtronCM100.proto laserOn $(PORT)")
     field(HIGH, 1)
+    field(ASG, "operator")
 }
 
 record(bo, "$(P)$(R)EmergencyStop") {
@@ -89,6 +94,7 @@ record(bo, "$(P)$(R)EmergencyStop") {
     field(DTYP, "stream")
     field(OUT,  "@AmtronCM100.proto emergencyStop $(PORT)")
     field(HIGH, 1)
+    field(ASG, "poweroff")
 }
 
 
@@ -269,8 +275,9 @@ record(stringout, "$(P)$(R)Debug") {
     field(DESC, "Generic command interface")
     field(DTYP, "stream")
     field(OUT,  "@AmtronCM100.proto debug $(PORT)")
+    field(ASG, "developer")
 }
 
-record(stringin, "DebugLine1") {}
-record(stringin, "DebugLine2") {}
-record(stringin, "DebugLine3") {}
+record(stringin, "DebugLine1") { field(ASG, "developer") }
+record(stringin, "DebugLine2") { field(ASG, "developer") }
+record(stringin, "DebugLine3") { field(ASG, "developer") }
