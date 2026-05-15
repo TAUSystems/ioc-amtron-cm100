@@ -193,7 +193,7 @@ Laser Off</text>
       <pv_name>$(P)$(R)DeviceState.BA</pv_name>
       <symbols>
         <symbol>images/unchecked.svg</symbol>
-        <symbol>images.warning.svg</symbol>
+        <symbol>images/warning.svg</symbol>
       </symbols>
       <y>22</y>
       <width>20</width>
