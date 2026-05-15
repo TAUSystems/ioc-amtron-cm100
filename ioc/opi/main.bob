@@ -163,70 +163,79 @@ Laser Off</text>
       </foreground_color>
       <tooltip>$(actions)</tooltip>
     </widget>
-    <widget type="led" version="2.0.0">
+    <widget type="symbol" version="2.0.0">
       <name>ErrorPresentLED</name>
       <pv_name>$(P)$(R)DeviceState.BB</pv_name>
-      <on_color>
-        <color name="MAJOR" red="255" green="0" blue="0">
-        </color>
-      </on_color>
+      <symbols>
+        <symbol>images/unchecked.svg</symbol>
+        <symbol>images/error.svg</symbol>
+      </symbols>
+      <width>20</width>
+      <height>20</height>
       <tooltip></tooltip>
     </widget>
     <widget type="label" version="2.0.0">
       <name>ErrorPresentLabel</name>
       <text>Error Present</text>
       <x>20</x>
+      <y>2</y>
       <width>142</width>
     </widget>
     <widget type="label" version="2.0.0">
       <name>WarningPresentLabel</name>
       <text>Warning Present</text>
       <x>20</x>
-      <y>22</y>
+      <y>24</y>
       <width>142</width>
     </widget>
-    <widget type="led" version="2.0.0">
+    <widget type="symbol" version="2.0.0">
       <name>WarningPresentLED</name>
       <pv_name>$(P)$(R)DeviceState.BA</pv_name>
+      <symbols>
+        <symbol>images/unchecked.svg</symbol>
+        <symbol>images.warning.svg</symbol>
+      </symbols>
       <y>22</y>
-      <on_color>
-        <color name="MINOR" red="255" green="128" blue="0">
-        </color>
-      </on_color>
+      <width>20</width>
+      <height>20</height>
       <tooltip></tooltip>
     </widget>
     <widget type="label" version="2.0.0">
       <name>SafetyInterlockLabel</name>
       <text>Disabled by safety IL</text>
       <x>20</x>
-      <y>44</y>
+      <y>46</y>
       <width>162</width>
     </widget>
-    <widget type="led" version="2.0.0">
+    <widget type="symbol" version="2.0.0">
       <name>SafetyInterlockLED</name>
       <pv_name>$(P)$(R)DeviceState.B9</pv_name>
+      <symbols>
+        <symbol>images/unchecked.svg</symbol>
+        <symbol>images/error.svg</symbol>
+      </symbols>
       <y>44</y>
-      <on_color>
-        <color name="MAJOR" red="255" green="0" blue="0">
-        </color>
-      </on_color>
+      <width>20</width>
+      <height>20</height>
       <tooltip></tooltip>
     </widget>
     <widget type="label" version="2.0.0">
       <name>FunctionalInterlockLabel</name>
       <text>Disabled by functional IL</text>
       <x>20</x>
-      <y>66</y>
+      <y>68</y>
       <width>162</width>
     </widget>
-    <widget type="led" version="2.0.0">
+    <widget type="symbol" version="2.0.0">
       <name>FunctionalInterlockLED</name>
       <pv_name>$(P)$(R)DeviceState.B18</pv_name>
+      <symbols>
+        <symbol>images/unchecked.svg</symbol>
+        <symbol>images/warning.svg</symbol>
+      </symbols>
       <y>66</y>
-      <on_color>
-        <color name="MINOR" red="255" green="128" blue="0">
-        </color>
-      </on_color>
+      <width>20</width>
+      <height>20</height>
       <tooltip></tooltip>
     </widget>
     <widget type="action_button" version="3.0.0">
@@ -321,7 +330,7 @@ Laser Off</text>
         <script file="script/disable_preset_current.py">
           <pv_name>$(P)$(R)Current.DRVH</pv_name>
           <pv_name>loc://$(P)$(R)CurrentPreset0</pv_name>
-        </script>        
+        </script>
       </scripts>
       <tooltip>Set current setpoint to this preset</tooltip>
     </widget>

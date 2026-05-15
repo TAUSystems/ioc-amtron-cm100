@@ -3,18 +3,16 @@
   <name>error_indicator</name>
   <width>222</width>
   <height>22</height>
-  <widget type="led" version="2.0.0">
+  <widget type="symbol" version="2.0.0">
     <name>LED</name>
     <class>WARNING</class>
     <pv_name>$(PVNAME).$(FIELD=VAL)</pv_name>
-    <off_color use_class="true">
-      <color name="Off" red="60" green="100" blue="60">
-      </color>
-    </off_color>
-    <on_color use_class="true">
-      <color name="MAJOR" red="255" green="0" blue="0">
-      </color>
-    </on_color>
+    <symbols>
+      <symbol>../images/unchecked.svg</symbol>
+      <symbol>../images/warning.svg</symbol>
+    </symbols>
+    <width>20</width>
+    <height>20</height>
     <tooltip></tooltip>
   </widget>
   <widget type="label" version="2.0.0">
