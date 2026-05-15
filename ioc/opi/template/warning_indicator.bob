@@ -8,8 +8,8 @@
     <class>WARNING</class>
     <pv_name>$(PVNAME).$(FIELD=VAL)</pv_name>
     <symbols>
-      <symbol>../images/unchecked.svg</symbol>
-      <symbol>../images/warning.svg</symbol>
+      <symbol>images/unchecked.svg</symbol>
+      <symbol>images/warning.svg</symbol>
     </symbols>
     <width>20</width>
     <height>20</height>
